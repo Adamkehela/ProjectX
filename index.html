@@ -1,0 +1,2348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProjectX - Revolutionizing Assistive Mobility</title>
+    <meta name="description" content="ProjectX by Kehela Mobility and Engineering, LLC - The first multi-mode, all-terrain electric wheelchair with AI-driven stability, stair navigation, and standing functionality.">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --neon-blue: #00d4ff;
+            --neon-green: #00ff88;
+            --neon-purple: #9d4edd;
+            --neon-orange: #ff6d00;
+            --dark-bg: #0a0a0a;
+            --darker-bg: #000000;
+            --card-bg: #111111;
+            --border-glow: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --text-muted: #666666;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--dark-bg);
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(157, 78, 221, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(0, 255, 136, 0.05) 0%, transparent 50%);
+            z-index: -1;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(1deg); }
+            66% { transform: translateY(10px) rotate(-1deg); }
+        }
+
+        /* Skip Link for Accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--neon-blue);
+            color: var(--dark-bg);
+            padding: 8px;
+            text-decoration: none;
+            z-index: 1000;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .skip-link:focus {
+            top: 6px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 999;
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover, .nav-links a:focus {
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-primary);
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+        }
+
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--darker-bg);
+            color: var(--text-primary);
+            text-align: center;
+            padding: 8rem 2rem;
+            margin-top: -80px;
+            padding-top: 12rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(45deg, transparent 30%, rgba(0, 212, 255, 0.1) 50%, transparent 70%),
+                linear-gradient(-45deg, transparent 30%, rgba(0, 255, 136, 0.05) 50%, transparent 70%);
+            animation: heroShimmer 8s ease-in-out infinite;
+        }
+
+        @keyframes heroShimmer {
+            0%, 100% { opacity: 0.3; transform: translateX(-100px); }
+            50% { opacity: 0.8; transform: translateX(100px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-green), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -2px;
+            line-height: 1.1;
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--neon-blue);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .stat-item {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .stat-item:hover::before {
+            left: 100%;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon-blue);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--neon-green);
+            display: block;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* CTA Buttons */
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1.2rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-green));
+            color: var(--dark-bg);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--neon-blue);
+            border: 2px solid var(--neon-blue);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover, .btn:focus {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn-secondary:hover {
+            background: var(--neon-blue);
+            color: var(--dark-bg);
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Problems Section */
+        .problems-section {
+            background: var(--card-bg);
+            position: relative;
+        }
+
+        .problems-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(157, 78, 221, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(255, 109, 0, 0.05) 0%, transparent 50%);
+        }
+
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .problem-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problem-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--neon-orange), var(--neon-purple));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .problem-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .problem-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--neon-purple);
+            box-shadow: 0 25px 50px rgba(157, 78, 221, 0.2);
+        }
+
+        .problem-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 20px rgba(255, 109, 0, 0.5);
+        }
+
+        .problem-card h3 {
+            color: var(--neon-orange);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .problem-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .solution-tag {
+            background: linear-gradient(45deg, var(--neon-green), var(--neon-blue));
+            color: var(--dark-bg);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Innovations Section */
+        .innovations-section {
+            background: var(--darker-bg);
+            position: relative;
+        }
+
+        .innovations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .innovation-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .innovation-card::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            transition: all 0.5s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .innovation-card:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .innovation-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--neon-blue);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3);
+        }
+
+        .innovation-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-green));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-bg);
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .innovation-card h3 {
+            color: var(--neon-blue);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+        }
+
+        .innovation-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+        }
+
+        .ip-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--neon-green);
+            color: var(--dark-bg);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Happy People Images Section */
+        .inspiration-section {
+            background: var(--card-bg);
+            text-align: center;
+        }
+
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .image-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .image-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.2);
+        }
+
+        .image-placeholder {
+            height: 200px;
+            background: linear-gradient(45deg, 
+                rgba(0, 212, 255, 0.1), 
+                rgba(0, 255, 136, 0.1),
+                rgba(157, 78, 221, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-placeholder::before {
+            content: '😊';
+            font-size: 3rem;
+            position: absolute;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .image-caption {
+            padding: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Technical Specs */
+        .tech-specs {
+            background: var(--darker-bg);
+            position: relative;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .spec-item {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .spec-item:hover {
+            border-color: var(--neon-green);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.1);
+        }
+
+        .spec-label {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .spec-value {
+            color: var(--neon-green);
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+        }
+
+        /* Team Section */
+        .team-section {
+            background: var(--card-bg);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-member::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.05), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .team-member:hover::before {
+            left: 100%;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon-blue);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+        }
+
+        .team-photo {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-bg);
+            font-size: 2.5rem;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .team-photo::after {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-green), var(--neon-purple));
+            border-radius: 50%;
+            z-index: -1;
+            animation: rotate 3s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .team-name {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .team-title {
+            color: var(--neon-blue);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .team-bio {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Fundraising Section */
+        .fundraising-section {
+            background: linear-gradient(135deg, var(--darker-bg), var(--card-bg));
+            color: var(--text-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fundraising-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
+        }
+
+        .fundraising-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .progress-container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .progress-bar {
+            background: rgba(255, 255, 255, 0.1);
+            height: 15px;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, var(--neon-green), var(--neon-blue));
+            height: 100%;
+            width: 35%;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .donation-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .donation-btn {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            color: var(--neon-blue);
+            border: 2px solid var(--neon-blue);
+            padding: 1rem;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .donation-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-green));
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .donation-btn:hover::before {
+            left: 0;
+        }
+
+        .donation-btn:hover {
+            color: var(--dark-bg);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        /* Contact Form */
+        .contact-section {
+            background: var(--card-bg);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: var(--glass-bg);
+            border: 2px solid var(--glass-border);
+            border-radius: 10px;
+            font-size: 1rem;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .form-group select {
+            background: var(--card-bg);
+            color: var(--text-primary);
+        }
+
+        .form-group select option {
+            background: var(--card-bg);
+            color: var(--text-primary);
+            padding: 0.5rem;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* Survey Styles */
+        .hidden {
+            display: none;
+        }
+
+        .survey-form {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: rgba(0, 255, 136, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+        }
+
+        .form-section h4 {
+            color: var(--neon-green);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            text-align: center;
+        }
+
+        .survey-question {
+            color: var(--neon-green);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: block;
+            font-size: 1.1rem;
+        }
+
+        .radio-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 1rem;
+            align-items: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .radio-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .radio-option {
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .radio-option:hover {
+            background: rgba(0, 255, 136, 0.1);
+            border-color: var(--neon-green);
+        }
+
+        .radio-option input[type="radio"] {
+            margin-right: 0.5rem;
+        }
+
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.5rem;
+        }
+
+        .checkbox-option {
+            padding: 0.5rem;
+            cursor: pointer;
+        }
+
+        .checkbox-option input[type="checkbox"] {
+            margin-right: 0.5rem;
+        }
+
+        /* Mobile menu functionality */
+        @media (max-width: 768px) {
+            .nav-links.active {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.95);
+                backdrop-filter: blur(20px);
+                border-bottom: 1px solid var(--glass-border);
+                flex-direction: column;
+                padding: 2rem;
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+                transition: all 0.3s ease;
+                z-index: 998;
+            }
+            
+            .nav-links:not(.active) {
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+            }
+            
+            .nav-links.active li {
+                margin: 1rem 0;
+            }
+            
+            .nav-links.active a {
+                font-size: 1.2rem;
+                padding: 1rem;
+                display: block;
+                border-radius: 8px;
+                transition: all 0.3s ease;
+            }
+            
+            .nav-links.active a:hover {
+                background: rgba(0, 212, 255, 0.1);
+            }
+        }
+
+        /* Error and success state animations */
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        
+        .error {
+            border-color: var(--neon-orange) !important;
+            box-shadow: 0 0 10px rgba(255, 109, 0, 0.3) !important;
+        }
+
+        /* Form loading states */
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* Enhanced form field focus states */
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+            outline: none;
+        }
+
+        /* Radio and checkbox improvements */
+        .radio-option:focus-within,
+        .checkbox-option:focus-within {
+            background: rgba(0, 255, 136, 0.1);
+            border-color: var(--neon-green);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker-bg);
+            color: var(--text-primary);
+            padding: 4rem 2rem 2rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: var(--neon-green);
+            font-weight: 700;
+        }
+
+        .footer-section a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 2rem;
+            color: var(--text-muted);
+        }
+
+        /* Accessibility Features */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .problems-grid,
+            .innovations-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .donation-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Focus indicators for better accessibility */
+        *:focus {
+            outline: 3px solid var(--neon-blue);
+            outline-offset: 3px;
+        }
+
+        /* Hidden content for screen readers */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <header role="banner">
+        <nav role="navigation" aria-label="Main navigation">
+            <a href="#" class="logo" aria-label="ProjectX Home">ProjectX</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#problems">Solutions</a></li>
+                <li><a href="#innovations">Innovations</a></li>
+                <li><a href="#specs">Specs</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#surveys">Surveys</a></li>
+                <li><a href="#support">Support</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Toggle mobile menu">☰</button>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section id="home" class="hero" role="banner">
+            <div class="hero-content">
+                <h1>ProjectX</h1>
+                <p class="tagline">Revolutionizing Assistive Mobility</p>
+                <p>The world's first multi-mode, True all-terrain electric wheelchair with AI-driven stability control, breakthrough stair navigation, and seamless transformation capabilities. Where impossibility meets innovation.</p>
+                
+                <!-- Key Stats -->
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number">1.3B</span>
+                        <span class="stat-label">People Need Mobility Solutions</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">35°</span>
+                        <span class="stat-label">Maximum Incline Conquest</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100+</span>
+                        <span class="stat-label">Miles Range Per Charge</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">5</span>
+                        <span class="stat-label">Revolutionary Operating Modes</span>
+                    </div>
+                </div>
+
+                <div class="cta-buttons">
+                    <a href="#surveys" class="btn btn-primary">Take Survey</a>
+                    <a href="#support" class="btn btn-secondary">Join the Revolution</a>
+                    <a href="#innovations" class="btn btn-secondary">Discover Innovation</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Problems We Solve Section -->
+        <section id="problems" class="section problems-section">
+            <h2 class="section-title">Breaking Through Impossible Barriers</h2>
+            <p class="section-subtitle">For too long, mobility users have faced impossible choices. ProjectX eliminates every compromise.</p>
+            
+            <div class="problems-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">🏠⚔️🌍</div>
+                    <h3>Indoor vs Outdoor Dilemma</h3>
+                    <p class="problem-description"><strong>The Impossible Choice:</strong> Compact designs work indoors but fail outdoors. Rugged designs conquer terrain but can't navigate home spaces.</p>
+                    <div class="solution-tag">✨ Adaptive Footprint Technology</div>
+                </div>
+                
+                <div class="problem-card">
+                    <div class="problem-icon">🏢⚖️🧠</div>
+                    <h3>Stair Climbing vs Stability</h3>
+                    <p class="problem-description"><strong>The Engineering Paradox:</strong> Stair-climbing raises center of gravity, creating instability. Low centers prevent stair navigation entirely.</p>
+                    <div class="solution-tag">🤖 AI-Driven Stability Control</div>
+                </div>
+                
+                <div class="problem-card">
+                    <div class="problem-icon">👥🚪💪</div>
+                    <h3>Standing vs Maneuverability</h3>
+                    <p class="problem-description"><strong>The Social Sacrifice:</strong> Standing enables eye-level interaction but creates bulk that limits indoor mobility and social spaces.</p>
+                    <div class="solution-tag">🔄 Multi-Mode Transformation</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Inspiration Section -->
+        <section id="inspiration" class="section inspiration-section">
+            <h2 class="section-title">Empowering Human Potential</h2>
+            <p class="section-subtitle">Every innovation is inspired by the incredible people who refuse to let limitations define their dreams.</p>
+            
+            <div class="image-gallery">
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <span style="position: absolute; bottom: 20px; font-size: 1rem; color: var(--text-secondary);">Happy wheelchair user at work</span>
+                    </div>
+                    <div class="image-caption">Professional independence and workplace equality</div>
+                </div>
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <span style="position: absolute; bottom: 20px; font-size: 1rem; color: var(--text-secondary);">Family adventure outdoors</span>
+                    </div>
+                    <div class="image-caption">Exploring nature without boundaries</div>
+                </div>
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <span style="position: absolute; bottom: 20px; font-size: 1rem; color: var(--text-secondary);">Person climbing stairs confidently</span>
+                    </div>
+                    <div class="image-caption">Conquering architectural barriers with confidence</div>
+                </div>
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <span style="position: absolute; bottom: 20px; font-size: 1rem; color: var(--text-secondary);">Standing conversation at social event</span>
+                    </div>
+                    <div class="image-caption">Eye-level social interaction and dignity</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Innovations Section -->
+        <section id="innovations" class="section innovations-section">
+            <h2 class="section-title">Breakthrough Innovations</h2>
+            <p class="section-subtitle">Revolutionary technologies that transform the impossible into inevitable</p>
+            
+            <div class="innovations-grid">
+                <div class="innovation-card">
+                    <div class="ip-badge">IP Patent</div>
+                    <div class="innovation-icon">🧠</div>
+                    <h3>Dynamic Stability Management</h3>
+                    <p>AI-powered center of gravity control with real-time environmental monitoring. Continuous micro-adjustments ensure perfect balance across any terrain, any position, any challenge.</p>
+                </div>
+
+                <div class="innovation-card">
+                    <div class="ip-badge">IP Patent</div>
+                    <div class="innovation-icon">🔄</div>
+                    <h3>Multi-Mode Transformation</h3>
+                    <p>Seamless morphing between 5 distinct modes: Seated, Standing, Scooter, Extended Range, and Dual Rider. One device, infinite possibilities, zero compromise.</p>
+                </div>
+
+                <div class="innovation-card">
+                    <div class="ip-badge">IP Patent</div>
+                    <div class="innovation-icon">🏗️</div>
+                    <h3>Stair Navigation Solution</h3>
+                    <p>Revolutionary vertical mobility system designed for safe and stable vertical movement. Maintains structural balance during elevation changes while providing secure, confidence-boosting stair traversal capabilities.</p>
+                </div>
+
+                <div class="innovation-card">
+                    <div class="ip-badge">IP Patent</div>
+                    <div class="innovation-icon">🚗</div>
+                    <h3>Transport Configuration Technology</h3>
+                    <p>Engineered for portability and user convenience with dedicated transport and storage configurations. Space-efficient design enables quick transitions between mobility and storage modes, simplifying vehicle integration with rapid deployment capabilities.</p>
+                </div>
+
+                <div class="innovation-card">
+                    <div class="innovation-icon">📱</div>
+                    <h3>Advanced Control System</h3>
+                    <p>Primary control via ergonomic joystick with customizable sensitivity. Secondary smartphone app with user profiles that learn preferences over time. Optional caregiver remote control for specific scenarios and future expansion for alternative control methods including lean-to-control for users with limited extremity function.</p>
+                </div>
+
+                <div class="innovation-card">
+                    <div class="innovation-icon">👥</div>
+                    <h3>Companion Integration</h3>
+                    <p>Uniquely capable of dual-user operation, securely supporting an additional rider up to 180 lbs with balanced weight distribution. Preserves maneuverability and stability in dual-rider mode, expanding usability for caregivers, companions, or shared mobility experiences.</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 4rem; text-align: center; background: var(--glass-bg); backdrop-filter: blur(20px); border: 1px solid var(--glass-border); border-radius: 20px; padding: 2.5rem;">
+                <h3 style="color: var(--neon-green); margin-bottom: 1rem; font-size: 1.5rem;">Beyond Innovation: Complete Integration</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                    <div>
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">⚡</div>
+                        <strong>Smart Suspension</strong><br>
+                        <span style="color: var(--text-secondary);">Adaptive terrain response</span>
+                    </div>
+                    <div>
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔋</div>
+                        <strong>Energy Recovery</strong><br>
+                        <span style="color: var(--text-secondary);">Regenerative braking system</span>
+                    </div>
+                    <div>
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">📱</div>
+                        <strong>AI Learning</strong><br>
+                        <span style="color: var(--text-secondary);">Personalized user adaptation</span>
+                    </div>
+                    <div>
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🌐</div>
+                        <strong>Connected Ecosystem</strong><br>
+                        <span style="color: var(--text-secondary);">Remote monitoring & support</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Specifications -->
+        <section id="specs" class="section tech-specs">
+            <h2 class="section-title">Engineering Excellence</h2>
+            <p class="section-subtitle">Precision engineering meets uncompromising performance</p>
+            
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <span class="spec-label">Total Weight Capacity</span>
+                    <span class="spec-value">500 lbs</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">User + Companion/Cargo</span>
+                    <span class="spec-value">350 + 150 lbs</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Device Weight Range</span>
+                    <span class="spec-value">130-200 lbs</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Adaptive Dimensions</span>
+                    <span class="spec-value">94×78×61 cm</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Battery Options</span>
+                    <span class="spec-value">3.6-14.4 kWh</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Maximum Range</span>
+                    <span class="spec-value">100+ miles</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Top Speed</span>
+                    <span class="spec-value">25 km/hr</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Ground Clearance</span>
+                    <span class="spec-value">0-11 inches</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Incline Mastery</span>
+                    <span class="spec-value">35° maximum</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Turning Capability</span>
+                    <span class="spec-value">Zero-turn radius</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Door Compatibility</span>
+                    <span class="spec-value">32-inch standard</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Compliance</span>
+                    <span class="spec-value">RESNA & ADA</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section id="team" class="section team-section">
+            <h2 class="section-title">Visionary Leadership</h2>
+            <p class="section-subtitle">World-class expertise driving revolutionary innovation</p>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-photo">AK</div>
+                    <div class="team-name">Adam Kehela</div>
+                    <div class="team-title">Founder, CEO & CTO</div>
+                    <p class="team-bio">Visionary leader with extensive experience in autonomous driving, Advanced Driver Assistance Systems (ADAS), and infotainment systems. Former Senior Technical Program Manager at leading automotive and tech companies, specializing in connected vehicle technologies and innovation strategy. Leading the revolution in AI-powered mobility platforms with deep expertise in automotive safety systems and human-machine interfaces.</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-photo">KA</div>
+                    <div class="team-name">Khaled Azab</div>
+                    <div class="team-title">Senior VP of Business Development & Strategy</div>
+                    <p class="team-bio">Seasoned business development leader with nearly two decades of experience managing complex, large-scale industrial, retail, and commercial infrastructure projects. Expert in cross-functional team leadership and strategic partnerships across sectors, driving go-to-market strategy and commercialization efforts for global impact.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fundraising Section -->
+        <section id="support" class="section fundraising-section">
+            <div class="fundraising-content">
+                <h2 class="section-title">Join the Mobility Revolution</h2>
+                <p class="section-subtitle">Help us transform 1.3 billion lives through breakthrough technology</p>
+                
+                <div class="progress-container">
+                    <h3 style="color: var(--neon-green); margin-bottom: 1rem;">Current Funding Progress</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" role="progressbar" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" aria-label="Fundraising progress: 35% of goal reached"></div>
+                    </div>
+                    <p style="font-size: 1.2rem; font-weight: 600;">$175,000 raised of $1,000,000 Pre-Seed goal</p>
+                    <p style="color: var(--text-secondary); margin-top: 0.5rem;">Funding breakthrough technology for global impact</p>
+                </div>
+
+                <div class="donation-options">
+                    <button class="donation-btn" onclick="donate(1000)">$1,000</button>
+                    <button class="donation-btn" onclick="donate(2500)">$2,500</button>
+                    <button class="donation-btn" onclick="donate(5000)">$5,000</button>
+                    <button class="donation-btn" onclick="donate(10000)">$10,000</button>
+                    <button class="donation-btn" onclick="donate(25000)">$25,000</button>
+                    <button class="donation-btn" onclick="donate('custom')">Custom Amount</button>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
+                    <div style="background: var(--glass-bg); backdrop-filter: blur(20px); border: 1px solid var(--glass-border); border-radius: 15px; padding: 2rem;">
+                        <h3 style="color: var(--neon-blue); margin-bottom: 1rem;">🚀 Innovation Impact</h3>
+                        <p>Your investment directly funds breakthrough R&D, patent protection, and clinical trials that will revolutionize mobility technology forever.</p>
+                    </div>
+                    <div style="background: var(--glass-bg); backdrop-filter: blur(20px); border: 1px solid var(--glass-border); border-radius: 15px; padding: 2rem;">
+                        <h3 style="color: var(--neon-green); margin-bottom: 1rem;">🌍 Global Recognition</h3>
+                        <p>Join our wall of innovation champions. All supporters receive recognition and exclusive updates on breakthrough milestones and technology developments.</p>
+                    </div>
+                    <div style="background: var(--glass-bg); backdrop-filter: blur(20px); border: 1px solid var(--glass-border); border-radius: 15px; padding: 2rem;">
+                        <h3 style="color: var(--neon-purple); margin-bottom: 1rem;">📈 Investment Opportunity</h3>
+                        <p>Early supporters gain access to exclusive investment opportunities as we scale from breakthrough prototype to global market transformation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Survey Section -->
+        <section id="surveys" class="section" style="background: var(--card-bg);">
+            <h2 class="section-title">Shape the Future of Mobility</h2>
+            <p class="section-subtitle">Your insights drive innovation and investment decisions. Help us validate breakthrough technology that eliminates mobility barriers.</p>
+            
+            <!-- Survey Selection Buttons -->
+            <div style="display: flex; gap: 2rem; justify-content: center; margin: 3rem 0; flex-wrap: wrap;">
+                <button onclick="showUserSurvey()" class="btn" style="background: linear-gradient(45deg, var(--neon-blue), var(--neon-green)); color: var(--dark-bg); padding: 1.5rem 3rem; font-size: 1.1rem; border-radius: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
+                    👤 User/Caregiver Survey
+                </button>
+                <button onclick="showProviderSurvey()" class="btn" style="background: linear-gradient(45deg, var(--neon-purple), var(--neon-orange)); color: var(--dark-bg); padding: 1.5rem 3rem; font-size: 1.1rem; border-radius: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
+                    🩺 Medical Professionals/Service Providers Survey
+                </button>
+            </div>
+
+            <!-- User/Caregiver Survey Form -->
+            <div id="user-survey" class="survey-form hidden">
+                <h3 style="color: var(--neon-blue); margin-bottom: 1rem; text-align: center; font-size: 1.8rem;">Mobility Independence Survey</h3>
+                <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.1rem;">Help Create Technology That Eliminates Your Need for Daily Assistance</p>
+                
+                <form aria-label="User Survey">
+                    <!-- Contact Information -->
+                    <div class="form-section">
+                        <h4>📧 Contact Information</h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                            <div class="form-group">
+                                <label for="user-name" class="survey-question">Name</label>
+                                <input type="text" id="user-name" name="name" placeholder="Your name">
+                            </div>
+                            <div class="form-group">
+                                <label for="user-email" class="survey-question">Email</label>
+                                <input type="email" id="user-email" name="email" placeholder="your.email@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="user-phone" class="survey-question">Phone</label>
+                                <input type="tel" id="user-phone" name="phone" placeholder="(555) 123-4567">
+                            </div>
+                            <div class="form-group">
+                                <label class="survey-question">Age & Role</label>
+                                <div style="display: flex; gap: 1rem; align-items: center;">
+                                    <input type="number" id="user-age" name="age" placeholder="Age" style="width: 80px;">
+                                    <div class="radio-option">
+                                        <input type="radio" name="role" value="user"> User
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" name="role" value="caregiver"> Caregiver
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feature Importance -->
+                    <div class="form-section">
+                        <h4>⭐ How important are these features to you?</h4>
+                        <div style="display: grid; gap: 1rem;">
+                            <div class="radio-grid">
+                                <span class="survey-question">Stair/curb climbing:</span>
+                                <div class="radio-option"><input type="radio" name="stair-importance" value="critical"> Critical</div>
+                                <div class="radio-option"><input type="radio" name="stair-importance" value="very"> Very important</div>
+                                <div class="radio-option"><input type="radio" name="stair-importance" value="somewhat"> Somewhat</div>
+                                <div class="radio-option"><input type="radio" name="stair-importance" value="not"> Not important</div>
+                            </div>
+                            <div class="radio-grid">
+                                <span class="survey-question">Compact indoor navigation:</span>
+                                <div class="radio-option"><input type="radio" name="indoor-importance" value="critical"> Critical</div>
+                                <div class="radio-option"><input type="radio" name="indoor-importance" value="very"> Very important</div>
+                                <div class="radio-option"><input type="radio" name="indoor-importance" value="somewhat"> Somewhat</div>
+                                <div class="radio-option"><input type="radio" name="indoor-importance" value="not"> Not important</div>
+                            </div>
+                            <div class="radio-grid">
+                                <span class="survey-question">True outdoor capability:</span>
+                                <div class="radio-option"><input type="radio" name="outdoor-importance" value="critical"> Critical</div>
+                                <div class="radio-option"><input type="radio" name="outdoor-importance" value="very"> Very important</div>
+                                <div class="radio-option"><input type="radio" name="outdoor-importance" value="somewhat"> Somewhat</div>
+                                <div class="radio-option"><input type="radio" name="outdoor-importance" value="not"> Not important</div>
+                            </div>
+                            <div class="radio-grid">
+                                <span class="survey-question">Standing to interact:</span>
+                                <div class="radio-option"><input type="radio" name="standing-importance" value="critical"> Critical</div>
+                                <div class="radio-option"><input type="radio" name="standing-importance" value="very"> Very important</div>
+                                <div class="radio-option"><input type="radio" name="standing-importance" value="somewhat"> Somewhat</div>
+                                <div class="radio-option"><input type="radio" name="standing-importance" value="not"> Not important</div>
+                            </div>
+                            <div class="radio-grid">
+                                <span class="survey-question">Easy vehicle transport:</span>
+                                <div class="radio-option"><input type="radio" name="transport-importance" value="critical"> Critical</div>
+                                <div class="radio-option"><input type="radio" name="transport-importance" value="very"> Very important</div>
+                                <div class="radio-option"><input type="radio" name="transport-importance" value="somewhat"> Somewhat</div>
+                                <div class="radio-option"><input type="radio" name="transport-importance" value="not"> Not important</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Independence Questions -->
+                    <div class="form-section">
+                        <h4>🚀 Independence Assessment</h4>
+                        
+                        <div class="form-group" style="margin-bottom: 2rem;">
+                            <label class="survey-question">How important is independence from caregivers/family help to you?</label>
+                            <div class="radio-options">
+                                <div class="radio-option"><input type="radio" name="independence-importance" value="extremely"> Extremely important—worth any price</div>
+                                <div class="radio-option"><input type="radio" name="independence-importance" value="very"> Very important</div>
+                                <div class="radio-option"><input type="radio" name="independence-importance" value="somewhat"> Somewhat important</div>
+                                <div class="radio-option"><input type="radio" name="independence-importance" value="not"> Not that important</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 2rem;">
+                            <label class="survey-question">For a device that provides complete independence (stairs, all-terrain, standing, transport):</label>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                                <div>
+                                    <label class="survey-question" style="font-size: 1rem; margin-bottom: 0.5rem;">Interest level:</label>
+                                    <div style="display: grid; gap: 0.5rem;">
+                                        <div class="radio-option"><input type="radio" name="interest-level" value="very"> Very interested</div>
+                                        <div class="radio-option"><input type="radio" name="interest-level" value="interested"> Interested</div>
+                                        <div class="radio-option"><input type="radio" name="interest-level" value="unsure"> Not sure</div>
+                                        <div class="radio-option"><input type="radio" name="interest-level" value="not"> Not interested</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="survey-question" style="font-size: 1rem; margin-bottom: 0.5rem;">Would pay:</label>
+                                    <div style="display: grid; gap: 0.5rem;">
+                                        <div class="radio-option"><input type="radio" name="price-willing" value="15-25k"> $15-25K</div>
+                                        <div class="radio-option"><input type="radio" name="price-willing" value="25-35k"> $25-35K</div>
+                                        <div class="radio-option"><input type="radio" name="price-willing" value="35k-plus"> $35K+</div>
+                                        <div class="radio-option"><input type="radio" name="price-willing" value="expensive"> Too expensive</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 2rem;">
+                            <label class="survey-question">If insurance doesn't cover full independence technology:</label>
+                            <div class="radio-options">
+                                <div class="radio-option"><input type="radio" name="no-insurance" value="lease"> Would lease/finance</div>
+                                <div class="radio-option"><input type="radio" name="no-insurance" value="save"> Would save to buy</div>
+                                <div class="radio-option"><input type="radio" name="no-insurance" value="not-purchase"> Wouldn't purchase</div>
+                                <div class="radio-option"><input type="radio" name="no-insurance" value="unsure"> Not sure</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 2rem;">
+                            <label class="survey-question">Independence from daily caregiver help and their availability would mean:</label>
+                            <div class="radio-options">
+                                <div class="radio-option"><input type="radio" name="independence-meaning" value="everything"> Everything to me</div>
+                                <div class="radio-option"><input type="radio" name="independence-meaning" value="major"> Major life improvement</div>
+                                <div class="radio-option"><input type="radio" name="independence-meaning" value="nice"> Nice to have</div>
+                                <div class="radio-option"><input type="radio" name="independence-meaning" value="not-priority"> Not a priority</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="survey-question">Would you:</label>
+                            <div class="radio-options">
+                                <div class="radio-option"><input type="radio" name="would-you" value="try"> Try it</div>
+                                <div class="radio-option"><input type="radio" name="would-you" value="buy"> Buy it</div>
+                                <div class="radio-option"><input type="radio" name="would-you" value="recommend"> Recommend it</div>
+                                <div class="radio-option"><input type="radio" name="would-you" value="all"> All three</div>
+                                <div class="radio-option"><input type="radio" name="would-you" value="none"> None</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 2rem; font-size: 1.2rem; padding: 1.5rem;">Submit Survey</button>
+                </form>
+            </div>
+
+            <!-- Provider Survey Form -->
+            <div id="provider-survey" class="survey-form hidden">
+                <h3 style="color: var(--neon-purple); margin-bottom: 2rem; text-align: center;">Advanced Mobility Technology Assessment</h3>
+                <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">Professional Insights for Next-Generation Wheelchair Development</p>
+                
+                <form aria-label="Provider Survey">
+                    <!-- Contact Information -->
+                    <div class="form-section">
+                        <h4>Professional Contact Information</h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                            <div class="form-group">
+                                <label for="provider-name" class="survey-question">Name</label>
+                                <input type="text" id="provider-name" name="name" placeholder="Your name">
+                            </div>
+                            <div class="form-group">
+                                <label for="provider-company" class="survey-question">Company/Organization</label>
+                                <input type="text" id="provider-company" name="company" placeholder="Organization name">
+                            </div>
+                            <div class="form-group">
+                                <label for="provider-email" class="survey-question">Email</label>
+                                <input type="email" id="provider-email" name="email" placeholder="your.email@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="provider-phone" class="survey-question">Phone</label>
+                                <input type="tel" id="provider-phone" name="phone" placeholder="(555) 123-4567">
+                            </div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                            <div class="form-group">
+                                <label class="survey-question">Role:</label>
+                                <div class="radio-options">
+                                    <div class="radio-option"><input type="radio" name="provider-role" value="ot"> OT</div>
+                                    <div class="radio-option"><input type="radio" name="provider-role" value="pt"> PT</div>
+                                    <div class="radio-option"><input type="radio" name="provider-role" value="physician"> Physician</div>
+                                    <div class="radio-option"><input type="radio" name="provider-role" value="dme"> DME Supplier</div>
+                                    <div class="radio-option"><input type="radio" name="provider-role" value="other"> Other</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="survey-question">Years experience:</label>
+                                <div class="radio-options">
+                                    <div class="radio-option"><input type="radio" name="experience" value="1-5"> 1-5</div>
+                                    <div class="radio-option"><input type="radio" name="experience" value="6-10"> 6-10</div>
+                                    <div class="radio-option"><input type="radio" name="experience" value="11-20"> 11-20</div>
+                                    <div class="radio-option"><input type="radio" name="experience" value="20+"> 20+</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="survey-question">Patients/clients per month:</label>
+                                <div class="radio-options">
+                                    <div class="radio-option"><input type="radio" name="volume" value="1-10"> 1-10</div>
+                                    <div class="radio-option"><input type="radio" name="volume" value="11-25"> 11-25</div>
+                                    <div class="radio-option"><input type="radio" name="volume" value="26-50"> 26-50</div>
+                                    <div class="radio-option"><input type="radio" name="volume" value="50+"> 50+</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feature Importance -->
+                    <div class="form-section">
+                        <h4>How important are these features to your patients/clients?</h4>
+                        <div style="display: grid; gap: 1rem;">
+                            <div class="radio-grid">
+                                <span class="survey-question">Stair/curb climbing:</span>
+                                <div class="radio-option"><input type="radio" name="stair-importance-provider" value="critical"> Critical</div>
+                                <div class="radio-option"><input type="radio" name="stair-importance-provider" value="very"> Very important</div>
+                                <div class="radio-option"><input type="radio" name="stair-importance-provider" value="somewhat"> Somewhat</div>
+                                <div class="radio-option"><input type="radio" name="stair-importance-provider" value="not"> Not important</div>
+                            </div>
+                            <div class="radio-grid">
+                                <span class="survey-question">Compact indoor navigation:</span>
+                                <div class="radio-option"><input type="radio" name="indoor-importance-provider" value="critical"> Critical</div>
+                                <div class="radio-option"><input type="radio" name="indoor-importance-provider" value="very"> Very important</div>
+                                <div class="radio-option"><input type="radio" name="indoor-importance-provider" value="somewhat"> Somewhat</div>
+                                <div class="radio-option"><input type="radio" name="indoor-importance-provider" value="not"> Not important</div>
+                            </div>
+                            <div class="radio-grid">
+                                <span class="survey-question">True outdoor capability:</span>
+                                <div class="radio-option"><input type="radio" name="outdoor-importance-provider" value="critical"> Critical</div>
+                                <div class="radio-option"><input type="radio" name="outdoor-importance-provider" value="very"> Very important</div>
+                                <div class="radio-option"><input type="radio" name="outdoor-importance-provider" value="somewhat"> Somewhat</div>
+                                <div class="radio-option"><input type="radio" name="outdoor-importance-provider" value="not"> Not important</div>
+                            </div>
+                            <div class="radio-grid">
+                                <span class="survey-question">Standing for eye-level interaction:</span>
+                                <div class="radio-option"><input type="radio" name="standing-importance-provider" value="critical"> Critical</div>
+                                <div class="radio-option"><input type="radio" name="standing-importance-provider" value="very"> Very important</div>
+                                <div class="radio-option"><input type="radio" name="standing-importance-provider" value="somewhat"> Somewhat</div>
+                                <div class="radio-option"><input type="radio" name="standing-importance-provider" value="not"> Not important</div>
+                            </div>
+                            <div class="radio-grid">
+                                <span class="survey-question">Easy vehicle transport:</span>
+                                <div class="radio-option"><input type="radio" name="transport-importance-provider" value="critical"> Critical</div>
+                                <div class="radio-option"><input type="radio" name="transport-importance-provider" value="very"> Very important</div>
+                                <div class="radio-option"><input type="radio" name="transport-importance-provider" value="somewhat"> Somewhat</div>
+                                <div class="radio-option"><input type="radio" name="transport-importance-provider" value="not"> Not important</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Percentage Who Would Benefit -->
+                    <div class="form-section">
+                        <h4>What percentage of your patients/clients would benefit from these capabilities?</h4>
+                        <div style="display: grid; gap: 1rem;">
+                            <div class="radio-grid">
+                                <span class="survey-question">Stair/step navigation:</span>
+                                <div class="radio-option"><input type="radio" name="stair-percentage" value="0-25"> 0-25%</div>
+                                <div class="radio-option"><input type="radio" name="stair-percentage" value="26-50"> 26-50%</div>
+                                <div class="radio-option"><input type="radio" name="stair-percentage" value="51-75"> 51-75%</div>
+                                <div class="radio-option"><input type="radio" name="stair-percentage" value="76-100"> 76-100%</div>
+                            </div>
+                            <div class="radio-grid">
+                                <span class="survey-question">Indoor-outdoor versatility:</span>
+                                <div class="radio-option"><input type="radio" name="versatility-percentage" value="0-25"> 0-25%</div>
+                                <div class="radio-option"><input type="radio" name="versatility-percentage" value="26-50"> 26-50%</div>
+                                <div class="radio-option"><input type="radio" name="versatility-percentage" value="51-75"> 51-75%</div>
+                                <div class="radio-option"><input type="radio" name="versatility-percentage" value="76-100"> 76-100%</div>
+                            </div>
+                            <div class="radio-grid">
+                                <span class="survey-question">Standing for eye-level interaction:</span>
+                                <div class="radio-option"><input type="radio" name="standing-percentage" value="0-25"> 0-25%</div>
+                                <div class="radio-option"><input type="radio" name="standing-percentage" value="26-50"> 26-50%</div>
+                                <div class="radio-option"><input type="radio" name="standing-percentage" value="51-75"> 51-75%</div>
+                                <div class="radio-option"><input type="radio" name="standing-percentage" value="76-100"> 76-100%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Clinical Outcomes -->
+                    <div class="form-section">
+                        <h4>What clinical outcomes matter most for advanced mobility devices? (Check top 3)</h4>
+                        <div class="checkbox-grid">
+                            <div class="checkbox-option"><input type="checkbox" name="clinical-outcomes" value="independence"> Enhanced independence from caregivers</div>
+                            <div class="checkbox-option"><input type="checkbox" name="clinical-outcomes" value="participation"> Improved community participation</div>
+                            <div class="checkbox-option"><input type="checkbox" name="clinical-outcomes" value="injury"> Reduced secondary injury risk</div>
+                            <div class="checkbox-option"><input type="checkbox" name="clinical-outcomes" value="social"> Better social interaction capability</div>
+                            <div class="checkbox-option"><input type="checkbox" name="clinical-outcomes" value="safety"> Increased safety/confidence</div>
+                            <div class="checkbox-option"><input type="checkbox" name="clinical-outcomes" value="access"> Greater environmental access</div>
+                        </div>
+                        <div class="form-group" style="margin-top: 1rem;">
+                            <label for="other-outcomes" class="survey-question">Other:</label>
+                            <input type="text" id="other-outcomes" name="other-outcomes" placeholder="Please specify">
+                        </div>
+                    </div>
+
+                    <!-- Advanced Features Assessment -->
+                    <div class="form-section">
+                        <h4>For advanced features (AI stability, real-time center of gravity monitoring, stair climbing, standing, 100+ mile range):</h4>
+                        
+                        <div style="display: grid; gap: 2rem;">
+                            <div>
+                                <label class="survey-question">Reasonable price point:</label>
+                                <div class="radio-options">
+                                    <div class="radio-option"><input type="radio" name="reasonable-price" value="15-20k"> $15-20K</div>
+                                    <div class="radio-option"><input type="radio" name="reasonable-price" value="20-30k"> $20-30K</div>
+                                    <div class="radio-option"><input type="radio" name="reasonable-price" value="30-40k"> $30-40K</div>
+                                    <div class="radio-option"><input type="radio" name="reasonable-price" value="40k-plus"> $40K+</div>
+                                    <div class="radio-option"><input type="radio" name="reasonable-price" value="no-matter"> Price doesn't matter for these features</div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="survey-question">Insurance justification likelihood:</label>
+                                <div class="radio-options">
+                                    <div class="radio-option"><input type="radio" name="insurance-likelihood" value="easily"> Easily justifiable</div>
+                                    <div class="radio-option"><input type="radio" name="insurance-likelihood" value="probably"> Probably justifiable</div>
+                                    <div class="radio-option"><input type="radio" name="insurance-likelihood" value="difficult"> Difficult to justify</div>
+                                    <div class="radio-option"><input type="radio" name="insurance-likelihood" value="not-covered"> Won't be covered</div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="survey-question">Patient demand level:</label>
+                                <div class="radio-options">
+                                    <div class="radio-option"><input type="radio" name="demand-level" value="extremely"> Extremely high</div>
+                                    <div class="radio-option"><input type="radio" name="demand-level" value="high"> High</div>
+                                    <div class="radio-option"><input type="radio" name="demand-level" value="moderate"> Moderate</div>
+                                    <div class="radio-option"><input type="radio" name="demand-level" value="low"> Low</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recommendation -->
+                    <div class="form-section">
+                        <h4>Would you recommend ProjectX to patients/clients?</h4>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" name="recommend-projectx" value="definitely"> Definitely</div>
+                            <div class="radio-option"><input type="radio" name="recommend-projectx" value="probably"> Probably</div>
+                            <div class="radio-option"><input type="radio" name="recommend-projectx" value="maybe"> Maybe</div>
+                            <div class="radio-option"><input type="radio" name="recommend-projectx" value="probably-not"> Probably not</div>
+                            <div class="radio-option"><input type="radio" name="recommend-projectx" value="no"> No</div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 2rem;">Submit Survey</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section contact-section">
+            <h2 class="section-title">Connect With Innovation</h2>
+            <p class="section-subtitle">Ready to be part of the mobility revolution? Let's build the future together.</p>
+            
+            <div class="contact-form">
+                <form aria-label="Contact Form">
+                    <div class="form-group">
+                        <label for="contact-name">Name *</label>
+                        <input type="text" id="contact-name" name="name" required placeholder="Your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-email">Email *</label>
+                        <input type="email" id="contact-email" name="email" required placeholder="your.email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-subject">Interest Area</label>
+                        <select id="contact-subject" name="subject">
+                            <option value="">Select your interest</option>
+                            <option value="investment">💰 Investment Opportunity</option>
+                            <option value="partnership">🤝 Strategic Partnership</option>
+                            <option value="media">📰 Media & Press Inquiry</option>
+                            <option value="technology">🔬 Technology Collaboration</option>
+                            <option value="distribution">🌐 Distribution Partnership</option>
+                            <option value="general">💭 General Inquiry</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-message">Message *</label>
+                        <textarea id="contact-message" name="message" rows="5" required placeholder="Tell us about your interest in ProjectX and how we can work together..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                </form>
+
+                <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--glass-border);">
+                    <h3 style="color: var(--neon-blue); margin-bottom: 1rem; text-align: center;">Stay Connected</h3>
+                    <p style="text-align: center; margin-bottom: 1rem;">Get exclusive updates on breakthrough developments</p>
+                    <form aria-label="Newsletter Signup" style="display: flex; gap: 1rem;">
+                        <input type="email" placeholder="Enter your email for updates" style="flex: 1;">
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>ProjectX</h4>
+                <p>Revolutionizing assistive mobility through breakthrough AI-driven technology and visionary engineering.</p>
+                <div style="margin-top: 1.5rem;">
+                    <a href="#" aria-label="LinkedIn">💼 LinkedIn</a>
+                    <a href="#" aria-label="Twitter">🐦 Twitter</a>
+                    <a href="#" aria-label="YouTube">📺 YouTube</a>
+                    <a href="#" aria-label="Instagram">📸 Instagram</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Innovation</h4>
+                <a href="#innovations">Key Technologies</a>
+                <a href="#specs">Technical Specs</a>
+                <a href="#problems">Solutions</a>
+                <a href="#team">Our Team</a>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <a href="#team">About Kehela Mobility</a>
+                <a href="#support">Investment</a>
+                <a href="#contact">Partnership</a>
+                <a href="#">Careers</a>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <a href="#">Patents & IP</a>
+                <a href="#">Technical Papers</a>
+                <a href="#">Press Kit</a>
+                <a href="#">Accessibility</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Kehela Mobility and Engineering, LLC. All rights reserved. | Revolutionizing mobility through breakthrough innovation.</p>
+        </div>
+    </footer>
+
+    <script>
+        // CORS-Safe Form Submission JavaScript
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Collect form data
+                const formData = new FormData(form);
+                const data = {};
+                
+                // Convert FormData to object, handling checkboxes properly
+                for (let [key, value] of formData.entries()) {
+                    if (data[key]) {
+                        // If key already exists, convert to array
+                        if (Array.isArray(data[key])) {
+                            data[key].push(value);
+                        } else {
+                            data[key] = [data[key], value];
+                        }
+                    } else {
+                        data[key] = value;
+                    }
+                }
+                
+                // Handle checkboxes that weren't selected
+                const checkboxes = form.querySelectorAll('input[type="checkbox"]');
+                const checkboxGroups = {};
+                
+                checkboxes.forEach(checkbox => {
+                    const name = checkbox.name;
+                    if (!checkboxGroups[name]) {
+                        checkboxGroups[name] = [];
+                    }
+                    if (checkbox.checked) {
+                        checkboxGroups[name].push(checkbox.value);
+                    }
+                });
+                
+                // Add checkbox group data
+                Object.keys(checkboxGroups).forEach(name => {
+                    if (checkboxGroups[name].length > 0) {
+                        data[name] = checkboxGroups[name];
+                    }
+                });
+                
+                // Add survey type
+                if (form.closest('#user-survey')) {
+                    data.surveyType = 'user-survey';
+                } else if (form.closest('#provider-survey')) {
+                    data.surveyType = 'provider-survey';
+                } else {
+                    // For contact form and other forms
+                    showThankYouMessage(form, 'Thank you for your submission! We\'ll get back to you soon.');
+                    return;
+                }
+                
+                // Validate required fields
+                if (!validateForm(form, data)) {
+                    return;
+                }
+                
+                // Show loading state
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Submitting...';
+                submitBtn.disabled = true;
+                
+                // CORS-Safe submission using text/plain content-type
+                fetch('https://script.google.com/macros/s/AKfycbwlzTKsatnNPiGf-4j_p9MgxdE-JYuNXIQ0hivJZCATelR6qb1NVJZBCrzR9QyxTQOGOA/exec', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'text/plain', // This prevents CORS preflight
+                    },
+                    body: JSON.stringify(data) // Send as JSON string in text/plain
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.text(); // Get as text first
+                })
+                .then(text => {
+                    try {
+                        const result = JSON.parse(text); // Parse the JSON
+                        if (result.success) {
+                            showThankYouMessage(form, 'Thank you! Your survey has been submitted successfully. Your insights help shape the future of mobility technology.');
+                            form.reset();
+                            
+                            // Hide the survey form after successful submission
+                            const surveyForm = form.closest('.survey-form');
+                            if (surveyForm) {
+                                surveyForm.classList.add('hidden');
+                            }
+                            
+                            // Track successful submission (if you have analytics)
+                            if (typeof gtag !== 'undefined') {
+                                gtag('event', 'survey_submission', {
+                                    'event_category': 'engagement',
+                                    'event_label': data.surveyType
+                                });
+                            }
+                        } else {
+                            throw new Error(result.error || 'Unknown error occurred');
+                        }
+                    } catch (parseError) {
+                        console.error('Failed to parse response:', text);
+                        throw new Error('Invalid response from server');
+                    }
+                })
+                .catch(error => {
+                    console.error('Survey submission error:', error);
+                    
+                    // Check if it's a CORS error specifically
+                    if (error.message.includes('CORS') || error.message.includes('cors')) {
+                        showErrorMessage(form, 'Network security issue detected. Please try submitting again, or contact us directly at surveys@projectx.com if the problem persists.');
+                    } else {
+                        showErrorMessage(form, 'There was an error submitting your survey. Please check your connection and try again, or email us directly at surveys@projectx.com');
+                    }
+                })
+                .finally(() => {
+                    // Restore button
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                });
+            });
+        });
+
+        // Form validation function
+        function validateForm(form, data) {
+            const requiredFields = form.querySelectorAll('[required]');
+            let isValid = true;
+            
+            // Clear previous error states
+            form.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.classList.add('error');
+                    isValid = false;
+                }
+            });
+            
+            // Specific validation for surveys
+            if (data.surveyType === 'user-survey' || data.surveyType === 'provider-survey') {
+                // Check if at least some questions are answered
+                const radioInputs = form.querySelectorAll('input[type="radio"]:checked');
+                if (radioInputs.length < 3) {
+                    showErrorMessage(form, 'Please answer at least a few questions to help us understand your needs.');
+                    return false;
+                }
+            }
+            
+            if (!isValid) {
+                showErrorMessage(form, 'Please fill in all required fields.');
+                // Scroll to first error
+                const firstError = form.querySelector('.error');
+                if (firstError) {
+                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    firstError.focus();
+                }
+            }
+            
+            return isValid;
+        }
+
+        // Success message display
+        function showThankYouMessage(form, message) {
+            let messageDiv = form.querySelector('.success-message');
+            if (!messageDiv) {
+                messageDiv = document.createElement('div');
+                messageDiv.className = 'success-message';
+                messageDiv.style.cssText = `
+                    background: rgba(0, 255, 136, 0.1);
+                    border: 2px solid var(--neon-green);
+                    border-radius: 10px;
+                    padding: 1.5rem;
+                    margin: 1rem 0;
+                    color: var(--neon-green);
+                    text-align: center;
+                    font-weight: 600;
+                    animation: slideIn 0.3s ease-out;
+                `;
+                form.appendChild(messageDiv);
+            }
+            
+            messageDiv.textContent = message;
+            messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            setTimeout(() => {
+                if (messageDiv.parentNode) {
+                    messageDiv.remove();
+                }
+            }, 10000);
+        }
+
+        // Error message display
+        function showErrorMessage(form, message) {
+            form.querySelectorAll('.error-message').forEach(el => el.remove());
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'error-message';
+            messageDiv.style.cssText = `
+                background: rgba(255, 109, 0, 0.1);
+                border: 2px solid var(--neon-orange);
+                border-radius: 10px;
+                padding: 1.5rem;
+                margin: 1rem 0;
+                color: var(--neon-orange);
+                text-align: center;
+                font-weight: 600;
+                animation: shake 0.5s ease-in-out;
+            `;
+            messageDiv.textContent = message;
+            
+            form.insertBefore(messageDiv, form.firstChild);
+            messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            setTimeout(() => {
+                if (messageDiv.parentNode) {
+                    messageDiv.remove();
+                }
+            }, 8000);
+        }
+
+        // Survey functionality
+        function showUserSurvey() {
+            console.log('Showing user survey');
+            const userSurvey = document.getElementById('user-survey');
+            const providerSurvey = document.getElementById('provider-survey');
+            
+            if (userSurvey && providerSurvey) {
+                userSurvey.classList.remove('hidden');
+                providerSurvey.classList.add('hidden');
+                
+                userSurvey.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            } else {
+                console.error('Survey elements not found');
+            }
+        }
+
+        function showProviderSurvey() {
+            console.log('Showing provider survey');
+            const userSurvey = document.getElementById('user-survey');
+            const providerSurvey = document.getElementById('provider-survey');
+            
+            if (userSurvey && providerSurvey) {
+                providerSurvey.classList.remove('hidden');
+                userSurvey.classList.add('hidden');
+                
+                providerSurvey.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            } else {
+                console.error('Survey elements not found');
+            }
+        }
+
+        // Donation button functionality
+        function donate(amount) {
+            if (amount === 'custom') {
+                const customAmount = prompt('Enter your custom donation amount:');
+                if (customAmount && !isNaN(customAmount) && customAmount > 0) {
+                    alert(`Thank you for your interest in donating ${customAmount}! We'll redirect you to our secure payment processor.`);
+                }
+            } else {
+                alert(`Thank you for your interest in donating ${amount}! We'll redirect you to our secure payment processor.`);
+            }
+        }
+
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if (mobileMenuBtn && navLinks) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                    this.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+                    this.setAttribute('aria-expanded', navLinks.classList.contains('active'));
+                });
+            }
+
+            // Test endpoint connectivity
+            fetch('https://script.google.com/macros/s/AKfycbwlzTKsatnNPiGf-4j_p9MgxdE-JYuNXIQ0hivJZCATelR6qb1NVJZBCrzR9QyxTQOGOA/exec', {
+                method: 'GET'
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log('Endpoint test successful:', data);
+            })
+            .catch(error => {
+                console.error('Endpoint test failed:', error);
+            });
+            
+            // Initialize progress bar animation
+            const progressFill = document.querySelector('.progress-fill');
+            if (progressFill) {
+                setTimeout(() => {
+                    progressFill.style.width = '35%';
+                }, 1000);
+            }
+
+            // Debug: Check if survey elements exist
+            const userSurvey = document.getElementById('user-survey');
+            const providerSurvey = document.getElementById('provider-survey');
+            console.log('User survey element found:', !!userSurvey);
+            console.log('Provider survey element found:', !!providerSurvey);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const target = document.getElementById(targetId);
+                
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Close mobile menu if open
+                    const navLinks = document.querySelector('.nav-links');
+                    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+                    if (navLinks && navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        if (mobileMenuBtn) {
+                            mobileMenuBtn.textContent = '☰';
+                            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                        }
+                    }
+                }
+            });
+        });
+
+        // Enhanced visual effects on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            const heroContent = document.querySelector('.hero-content');
+            if (heroContent) {
+                heroContent.style.transform = `translateY(${rate}px)`;
+            }
+        });
+
+        // Enhanced accessibility
+        document.addEventListener('keydown', function(e) {
+            // Skip link functionality
+            if (e.key === 'Tab' && !e.shiftKey) {
+                const skipLink = document.querySelector('.skip-link');
+                if (document.activeElement === skipLink) {
+                    e.preventDefault();
+                    document.getElementById('main-content').focus();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
