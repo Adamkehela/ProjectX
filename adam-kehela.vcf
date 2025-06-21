@@ -1,10 +1,11 @@
 BEGIN:VCARD
 VERSION:3.0
 FN:Adam Kehela
+N:Kehela;Adam;;;
 ORG:Kehela Mobility and Engineering, LLC
 TITLE:Founder & CEO
-EMAIL:adamkehela@kehelaholding.com
-TEL:+1-443-900-0020
-URL:https://adamkehela.github.io/ProjectX/
-NOTE:ProjectX - Revolutionizing Assistive Mobility
+EMAIL;TYPE=WORK:adamkehela@kehelaholding.com
+TEL;TYPE=CELL:+1-443-900-0020
+URL;TYPE=WORK:https://adamkehela.github.io/ProjectX/
+NOTE:ProjectX - Revolutionizing Assistive Mobility through breakthrough AI-driven wheelchair technology
 END:VCARD
